@@ -1,0 +1,48 @@
+<div class="row">
+  <app-header></app-header>
+</div>
+<div class="container">
+  
+  <div class="row">
+<div [hidden]="allTasks.length>0" class="progress">
+  <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
+    <span class="sr-only">45% Complete</span>
+  </div>
+</div>
+<div class="input-group">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+      </span>
+      <input type="text" (keyup)="0" #input1 class="form-control" placeholder="Search for...">
+    </div>
+  </div>
+  <br/>
+<div class="row">
+  <!---->
+<table class="table">
+  <thead>
+    <th>Id</th>
+    <th>Title</th>
+    <th>Status</th>
+    <th>Action</th>
+  </thead>
+  <!---->
+<tr *ngFor="let item of (allTasks|filter:input1.value|paginate: { itemsPerPage: 5, currentPage: page }  )">
+  <td>{{item.Id}}</td>
+  <td>{{item.Title}}</td>
+    <td><span [ngClass]="{'donestatus': item.Status=='done','pendingstatus': item.Status=='pending'}" >{{item.Status}}</span></td>
+    <td>
+       <button  (click)='updateStatus(item)' type="button" class="btn btn-default" aria-label="Left Align">
+                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                          </button>
+                           <button (click)='deleteStatus(item)' type="button" class="btn btn-default" aria-label="Left Align">
+                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                          </button>
+    </td>
+</tr>
+</table>
+<div class="has-text-centered">
+    <pagination-controls (pageChange)="page = $event"></pagination-controls>
+</div>
+</div>
+</div>
