@@ -6,7 +6,7 @@ import  'rxjs/Rx';
 export class TaskdataService {
 
   constructor(private _http:Http) { }
-private url:string="https://localhost:3000/Tasks";
+private url:string="https://rkdemotask.herokuapp.com/Tasks/";
 getAllTask(){
 return this._http.get(this.url)
 .map((res:Response)=>res.json());

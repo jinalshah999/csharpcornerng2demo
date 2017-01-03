@@ -65,6 +65,18 @@ updateStatus(item:Task){
     }
   );
 }
+delarr:Task[]=[];
+checkbox(item:Task){
+this.delarr.push(item);
 
-
+}
+i:number=0;
+str:string='';
+checking(){
+  this.str='';
+  for(this.i=0;this.i<this.delarr.length;this.i++){
+    this.str+=this.delarr[this.i].Id;
+  }
+  alert(this.str);
+}
 }
