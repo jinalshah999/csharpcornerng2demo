@@ -21,6 +21,7 @@
   <!---->
 <table class="table">
   <thead>
+    <th></th>
     <th>Id</th>
     <th>Title</th>
     <th>Status</th>
@@ -28,12 +29,13 @@
   </thead>
   <!---->
 <tr *ngFor="let item of (allTasks|filter:input1.value|paginate: { itemsPerPage: 5, currentPage: page }  )">
+  <td>
+      <input   type="checkbox" (change)="checkbox(item)">
+    </td>
   <td>{{item.Id}}</td>
   <td>{{item.Title}}</td>
     <td><span [ngClass]="{'donestatus': item.Status=='done','pendingstatus': item.Status=='pending'}" >{{item.Status}}</span></td>
-    <td>
-      <input   type="checkbox" (change)="checkbox(item)">
-    </td>
+    
     <td>
        <button  (click)='updateStatus(item)' type="button" class="btn btn-default" aria-label="Left Align">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
@@ -44,7 +46,7 @@
     </td>
 </tr>
 </table>
-<button (click)="checking()" >Click</button>
+<button (click)="deleteAll()" >Click</button>
 <div class="has-text-centered">
     <pagination-controls (pageChange)="page = $event"></pagination-controls>
 </div>

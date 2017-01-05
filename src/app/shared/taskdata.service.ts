@@ -34,4 +34,10 @@ deleteTask(Id:string){
   let req=new RequestOptions({headers:header});
   return this._http.delete(this.url+Id,req);
 }
+deleteAll(item:Task[]){
+  let body=JSON.stringify(item);
+ let headers=new Headers({'Content-Type':'application/json'});
+ let requestoption=new RequestOptions({headers:headers});
+ return this._http.post(this.url+0,body,requestoption).map((res:Response)=>res.json());
+}
 }
